@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const Department = require('./lib/department');
 const Roles = require('./lib/roles');
 const Employee = require('./lib/employees');
+const cTable = require('console.table');
 
 
 const PORT = process.env.PORT || 3001;
@@ -23,22 +24,22 @@ const db = mysql.createConnection(
 );
 
 const getDept = () => {db.query('SELECT * FROM department', function (err,results) {
-    console.log(results);
+    console.table(results);
+    appMenu();
 });
 }
 const getRole = () => {db.query('SELECT * FROM role', function (err, results) {
-    console.log(results);
+    console.table(results);
+    appMenu();
 })
 };
 
 const getEmp = () => {db.query('SELECT * FROM employee', function (err, results) {
-    console.log(results);
+    console.table(results);
+    appMenu();
 })
 };
 
-// getRole();
-// getEmp();
-// getDept();
 const deptList = [];
 const roleList= [];
 const empList= [];
@@ -106,7 +107,7 @@ function addDept() {
                 answers.deptName,
             );
             deptList.push(department);
-            console.log(deptList);
+            getDept();
         })
 }
 
@@ -143,7 +144,7 @@ function addRole() {
                 answers.roleSal
             );
             roleList.push(roles);
-            console.log(roleList);
+            getRole();
         })
     }
 
@@ -180,7 +181,7 @@ function addEmp() {
                 answers.empMgr
             );
             empList.push(employee);
-            console.log(empList);
+            getRole();
         })
     };
 appMenu();
