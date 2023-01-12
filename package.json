@@ -1,0 +1,33 @@
+{
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "description": "Database to hold employee structure",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abermaggie/Employee_Tracker.git"
+  },
+  "keywords": [
+    "Employee",
+    "tracker",
+    "express",
+    "inquirer",
+    "challenge12"
+  ],
+  "author": "Maggie Abernathy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abermaggie/Employee_Tracker/issues"
+  },
+  "homepage": "https://github.com/Abermaggie/Employee_Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.18.2",
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
+  }
+}
