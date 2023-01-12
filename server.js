@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql12');
 const inquirer = require('inquirer');
+const Department = require('./lib/department');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -17,6 +18,12 @@ const db = mysql.createConnection(
     },
     console.log(`Connected to the employee_db database.`)
 );
+
+const deptList = [];
+const deptId= [];
+const empId= [];
+
+
 
 function appMenu() {
     console.log("Welcome to your employee directory!")
@@ -55,6 +62,24 @@ function appMenu() {
                 default:
                     console.log('pull directory');
             }
+        })
+};
+
+function addDept() {
+    console.log("Please enter department information.");
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'deptName',
+                message: "What is the name of the department you would like to add?"
+            }
+        ])
+        .then((answers) => {
+            const department = new Department(
+                answers.deptName,
+            );
+
         })
 }
 
