@@ -1,33 +1,29 @@
 DROP DATABASE IF EXISTS employee_db;
 CREATE DATABASE employee_db;
 
-Use employee_tracker;
+Use employee_db;
 
-CREATE TABLE department_table (
-    id: INT NOT NULL AUT0_INCREMENT PRIMARY KEY,
-    -- department name//
-    name VARCHAR(50) NOT NULL
+CREATE TABLE department (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE roles_table (
-    id: INT NOT NULL PRIMARY KEY,
-    -- holds role title//
-    title: VARCHAR(50) NOT NULL,
-    -- holds role salary//
-    salary: DECIMAL,
-    -- Holds ids that reference department//
-    department_id: INT NOT NULL
+CREATE TABLE role (
+    id INT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    salary DECIMAL,
+    department_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (department_id) REFERENCES department(id)
+);
 
-)
-
-CREATE TABLE employee_table (
-    id: INT NOT NULL PRIMARY KEY,
-    -- holds employee first name//
-    first_name: VARCHAR(50) NOT NULL,
-    -- holds employee last name//
-    last_name: VARCHAR(50) NOT NULL,
-    -- holds employee role//
-    role_id: INT,
-    -- ID of manager of employee//
-    manager_id: INT NOT NULL
-)
+CREATE TABLE employee (
+    id INT NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    role_id INT,
+    manager_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY(role_id) REFERENCES role(id)
+);
