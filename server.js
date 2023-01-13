@@ -5,6 +5,8 @@ const Department = require('./lib/department');
 const Roles = require('./lib/roles');
 const Employee = require('./lib/employees');
 const cTable = require('console.table');
+const { readFile, writeFile } = require('./routes/exqueries');
+
 
 
 const PORT = process.env.PORT || 3001;
@@ -103,10 +105,14 @@ function addDept() {
         ])
         .then((answers) => {
             const department = new Department(
+                answers.tableName = "department",
+                // destination = "/sql_folder/seeds.sql",
                 answers.deptId,
                 answers.deptName,
             );
             deptList.push(department);
+            readFile(answers);
+            writeFile(answers);
             getDept();
         })
 }
